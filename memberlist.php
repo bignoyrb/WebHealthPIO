@@ -64,7 +64,6 @@
             <td><?php echo $row['id']; ?></td> <!-- htmlentities is not needed here because $row['id'] is always an integer --> 
             <td><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td> 
             <td><?php echo htmlentities($row['email'], ENT_QUOTES, 'UTF-8'); ?></td> 
-            <td><?php echo htmlentities($row['salt'], ENT_QUOTES, 'UTF-8'); ?></td> 
         </tr> 
         </tr> 
         </tr> 

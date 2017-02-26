@@ -79,7 +79,7 @@
        
         $query_params = array( 
             ':email' => $_POST['email'], 
-            ':user_id' => $_SESSION['user']['id'], 
+            ':username' => $_SESSION['user']['username'], 
         ); 
       
         if($password !== null) 
@@ -106,7 +106,7 @@
        
         $query .= " 
             WHERE 
-                id = :user_id 
+                username = :username 
         "; 
          
         try 

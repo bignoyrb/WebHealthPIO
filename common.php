@@ -2,7 +2,7 @@
 
    
     $username = "root"; 
-    $password = ""; 
+    $password = "root"; 
     $host = "localhost"; 
     $dbname = "prod"; 
 
