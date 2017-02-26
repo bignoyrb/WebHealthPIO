@@ -99,12 +99,12 @@
 			$row = $stmt->fetch();
 			
 			$_SESSION['user'] = $row; 
-            if(strcmp($_SESSION['user']['username'],'dasmall')==0){
+            if(strcmp($_SESSION['user']['username'],'admin')==0){
 				header("Location: private.php"); 
 				die("Redirecting to: private.php"); 
 			} else{
-				header("Location: private.php"); 
-				die("Redirecting to: private.php"); 
+				header("Location: schedule.php"); 
+				die("Redirecting to: schedule.php"); 
 			}
 		} 
         else 
