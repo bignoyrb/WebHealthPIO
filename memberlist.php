@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html>
-<title>W3.CSS</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
-<body>
-
-
-
-<header class="w3-container w3-teal">
-  <h1>Header</h1>
-</header>
-
 
 
 <?php 
