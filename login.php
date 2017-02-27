@@ -1,3 +1,23 @@
+<!DOCTYPE html>
+<html>
+<title>PIO Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body, h1{font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+.bgimg {
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 50%, 50%;
+    background-image: url('logo2.png');
+    min-height: 100%;
+}
+</style>
 
 
 
@@ -116,15 +136,32 @@
     } 
   
 ?> 
-<h1>Test Login</h1> 
-<form action="login.php" method="post"> 
-    Username:
-    <input type="text" name="username" value="<?php echo $submitted_username; ?>" /> 
-    <br /><br /> 
-    Password:
-    <input type="password" name="password" value="" /> 
-    <br /><br /> 
-    <input type="submit" value="Login" /> 
-</form> 
-<a href="register.php">Register</a>
+
+    <body>
+
+    <nav class="w3-sidenav w3-hide-medium w3-hide-small" style="width:40%">
+      <div class="bgimg"></div>
+    </nav>
+
+    <div class="w3-main w3-padding-large" style="margin-left:40%">
+
+        <header class="w3-container w3-padding-128 w3-center" id="home">
+
+        </header>
+
+            <h1 class="w3-jumbo"><b>Login</b></h1>
+            <form action="login.php" method="post"> 
+                <b>Username</b><br />
+                <input type="text" name="username" value="<?php echo $submitted_username; ?>" /> 
+                <br /><br /> 
+                <b>Password<b><br /> 
+                <input type="password" name="password" value="" /> 
+                <br /><br/>
+                <input class="w3-btn" type="submit" value="Login" /> 
+            </form> 
+    </div>        
+
+    </body>
+</html>
+
 
