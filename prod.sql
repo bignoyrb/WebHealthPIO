@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2017 at 11:16 PM
+-- Generation Time: Feb 28, 2017 at 01:33 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -34,6 +34,13 @@ CREATE TABLE `imaging` (
   `assessment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `imgurl` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `imaging`
+--
+
+INSERT INTO `imaging` (`id`, `patientid`, `doctorid`, `notes`, `assessment`, `imgurl`) VALUES
+(1, 1, 1, '', 'Broken Femur', '1209381203981029.pgf');
 
 -- --------------------------------------------------------
 
@@ -111,7 +118,6 @@ CREATE TABLE `scheduledvisit` (
 
 INSERT INTO `scheduledvisit` (`id`, `patientid`, `doctorid`, `date`, `time`, `room`, `bed`, `notes`) VALUES
 (1, 1, 1, '2017-02-28', '09:00:00', '243', '2', ''),
-(2, 1, 1, '2017-02-28', '09:00:00', '243', '2', ''),
 (3, 2, 1, '2017-02-28', '09:15:00', '101', '1', ''),
 (4, 3, 1, '2017-02-28', '09:30:00', '22', '4', '');
 
@@ -129,6 +135,13 @@ CREATE TABLE `testresult` (
   `notes` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `imgurl` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `testresult`
+--
+
+INSERT INTO `testresult` (`id`, `patientid`, `doctorid`, `type`, `notes`, `imgurl`) VALUES
+(1, 1, 1, 'Blood Test', 'Normal Levels', '90928301928309.pdf');
 
 -- --------------------------------------------------------
 
@@ -150,10 +163,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `salt`, `email`, `authtoken`) VALUES
-(1, 'dasmall', '2d9cb3631d9ba58f33b931a904f29da5106c781b992a743dacfd0d8343695fca', 'f4e63417457dbd3', 'dasmall@lakeheadu.ca', '3031746c0d0344107daebadeccbc2237'),
+(1, 'dasmall', '2d9cb3631d9ba58f33b931a904f29da5106c781b992a743dacfd0d8343695fca', 'f4e63417457dbd3', 'dasmall@lakeheadu.ca', 'dcc5c249e15c211f21e1da0f3ba66169'),
 (2, 'bryon', '139782ba69e6411c4c725e4fe2895d93f8a5cc2f0a244b5ae09eca8bd02612a2', '4223035be82a3ed55f6759a963e76aaa', 'email@e.com', ''),
 (4, 'newuser', 'f6d80817f4345985138c038a302dd3ec64ed80967a700730ed3c72f89ca8d112', '6cd954a04bb5847a', 'user@gmail.com', '72fa288df9f22f7167dff80cf89fd4e5'),
-(5, 'admin', '246e0ca83ec82fde15dd9b78d7ca07a1956aa1b63bd08a659536235aeba2e282', '7b93b11d3fdd3f51', 'admin@localhost.com', NULL);
+(5, 'admin', '246e0ca83ec82fde15dd9b78d7ca07a1956aa1b63bd08a659536235aeba2e282', '7b93b11d3fdd3f51', 'admin@localhost.com', '0bf4193e64622cc35e7af3715e30f1d6');
 
 -- --------------------------------------------------------
 
@@ -171,6 +184,13 @@ CREATE TABLE `visit` (
   `diagnoses` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `treatment` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `visit`
+--
+
+INSERT INTO `visit` (`id`, `patientid`, `doctorid`, `date`, `time`, `notes`, `diagnoses`, `treatment`) VALUES
+(1, 1, 1, '2017-02-27', '07:00:00', '', 'Common Cold', 'Rest');
 
 --
 -- Indexes for dumped tables
@@ -234,7 +254,7 @@ ALTER TABLE `visit`
 -- AUTO_INCREMENT for table `imaging`
 --
 ALTER TABLE `imaging`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `notes`
 --
@@ -259,12 +279,17 @@ ALTER TABLE `scheduledvisit`
 -- AUTO_INCREMENT for table `testresult`
 --
 ALTER TABLE `testresult`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `visit`
+--
+ALTER TABLE `visit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
