@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html>
+<title>PIO Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body, h1{font-family: "Montserrat", sans-serif}
+
+</style>
+
 <?php 
 
    
@@ -45,9 +59,10 @@
   
     $rows = $stmt->fetchAll(); 
 ?> 
-<h1>Schedule</h1> 
-<table> 
-    <tr> 
+<h1>Patient Schedule</h1> 
+<table class="w3-table-all">
+    <thead>
+    <tr class="w3-teal">
         <th>Date</th> 
         <th>Time</th> 
         <th>Room</th> 
@@ -55,16 +70,19 @@
         <th>Patient</th> 
         <th>Notes</th> 
     </tr> 
+    </thead>
     <?php foreach($rows as $row): ?> 
         <tr> 
-            <td><?php echo htmlentities($row['date'], ENT_QUOTES, 'UTF-8'); ?></td> 
-            <td><?php echo htmlentities($row['time'], ENT_QUOTES, 'UTF-8'); ?></td> 
-			<td><?php echo htmlentities($row['room'], ENT_QUOTES, 'UTF-8'); ?></td> 
-			<td><?php echo htmlentities($row['bed'], ENT_QUOTES, 'UTF-8'); ?></td> 
-			<td><?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?></td> 
-			<td><?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?></td> 
+            <td class="w3-hover-teal"><?php echo htmlentities($row['date'], ENT_QUOTES, 'UTF-8'); ?></td> 
+            <td class="w3-hover-teal"><?php echo htmlentities($row['time'], ENT_QUOTES, 'UTF-8'); ?></td> 
+			<td class="w3-hover-teal"><?php echo htmlentities($row['room'], ENT_QUOTES, 'UTF-8'); ?></td> 
+			<td class="w3-hover-teal"><?php echo htmlentities($row['bed'], ENT_QUOTES, 'UTF-8'); ?></td> 
+			<td class="w3-hover-teal"><?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?></td> 
+			<td class="w3-hover-teal"><?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?></td> 
 	    </tr> 
         </tr> 
         </tr> 
     <?php endforeach; ?> 
 </table> 
+</body>
+</html
