@@ -18,4 +18,5 @@
 
 <a href="memberlist.php">List of all Accounts</a><br /> 
 <a href="register.php">Add Account</a><br /> 
+<a href="edit_account.php">Edit Account</a><br /> 
 <a href="logout.php">Logout</a>
