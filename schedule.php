@@ -17,7 +17,7 @@ body, h1{font-family: "Montserrat", sans-serif}
    
     require("common.php"); 
      
-   
+        
     if(empty($_SESSION['user'])) 
     { 
        
@@ -59,7 +59,7 @@ body, h1{font-family: "Montserrat", sans-serif}
   
     $rows = $stmt->fetchAll(); 
 ?> 
-<h1>Patient Schedule</h1> 
+<h1>Patient Schedule for <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?>  </h1> </br>
 <table class="w3-table-all">
     <thead>
     <tr class="w3-teal">
