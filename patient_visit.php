@@ -16,34 +16,37 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
 <body>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-teal w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
-    <div class="w3-container w3-display-container w3-padding-16">
+    <div class="w3-container w3-display-container w3-padding-13">
         <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
         <h3 class="w3-wide w3-text-black"><b>Patient<br>Name</b></h3>
-        <img src="photos/mario-2.png" class="w3-round" alt="patientpic" style="padding:16px;width:80%">
+        <img src="photos/mario-2.png" class="w3-round" alt="patientpic" style="padding:8px;width:80%">
     </div>
 
-    <div class="w3-padding-16 w3-large w3-text-black" >
+    <div class="w3-padding-13  w3-text-black" >
         <a class="w3-bar-item ">Height: 5'0"</a>
         <a class="w3-bar-item ">Weight 193 lbs</a>
-        <a class="w3-bar-item ">Health Card Number: 123 456 789</a>
+        <a class="w3-bar-item ">Health Card Number:<br> 123 456 789</a>
         <a class="w3-bar-item ">DOB: 09/12/1981</a>
         <a class="w3-bar-item ">Blood Preasure: 200/80</a>
-        <a class="w3-bar-item ">Other Conditions: None</a
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Other Conditions: <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block">
+                <a class="w3-bar-item w3-button">Condition 1</a>
+                <a class="w3-bar-item w3-button">Condition 2</a>
+            </div>
+        </div>
     </div>
 
-    <div class="w3-padding-16 w3-large w3-text-black w3-bar-block" >
+    <div class="w3-padding-16 w3-text-black w3-bar-block" >
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Medical History</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Perscriptions</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Referrals</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Imaging</a>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Blood Work</a>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Tests</a>
+        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Blood Work/Tests</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Physican Notes</a>
     </div>
 
-    <div class="w3-padding-16 w3-large w3-text-black w3-bar-block" >
-       <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey w3-xxlarge">Home<i class="w3-margin-left fa fa-home w3-xxlarge"></i></a>
-    </div>
+    
 </nav>
 
 <!-- Top menu on small screens -->
@@ -64,7 +67,7 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
     <!-- Top header -->
     <header class="w3-container w3-xxlarge">
         <p class="w3-left">Dr. Name</p>
-        <p class="w3-right">Date</p>
+        <p class="w3-right" id="date"></p>
     </header>
 
 </div>
@@ -91,9 +94,25 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
             <label class="w3-text-black"><b>Follow Up Appointment:</b></label>
             <input class="w3-input w3-border" name="appointment" type="text"></p>
 
-            <button class="w3-btn w3-black w3-xxlarge">Finnish Visit</button></p>
+        <p>
+            <button class="w3-button w3-black w3-hover-grey w3-xxlarge w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xxlarge"></i></button>
+            <a href="login.php" class="w3-button w3-black w3-hover-grey w3-xxlarge w3-right">Home<i class="w3-margin-left fa fa-home w3-xxlarge"></i></a></p>
     </form>
+
+    
+   
+
 </div>
+
+
+       <a href="#" class="w3-button w3-hover-grey w3-xxlarge">Home<i class="w3-margin-left fa fa-home w3-xxlarge"></i></a>
+    
+   
+<script>
+var d = new Date();
+document.getElementById("date").innerHTML = d.toDateString();
+</script>
+
 
 </body>
 </html
