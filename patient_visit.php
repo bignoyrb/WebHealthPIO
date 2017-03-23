@@ -96,7 +96,7 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
 
         <p>
             <button class="w3-button w3-black w3-hover-grey w3-xxlarge w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xxlarge"></i></button>
-            <a href="login.php" class="w3-button w3-black w3-hover-grey w3-xxlarge w3-right">Home<i class="w3-margin-left fa fa-home w3-xxlarge"></i></a></p>
+            <a href="schedule.php" class="w3-button w3-black w3-hover-grey w3-xxlarge w3-right">Home<i class="w3-margin-left fa fa-home w3-xxlarge"></i></a></p>
     </form>
 
     
@@ -104,9 +104,6 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
 
 </div>
 
-
-       <a href="#" class="w3-button w3-hover-grey w3-xxlarge">Home<i class="w3-margin-left fa fa-home w3-xxlarge"></i></a>
-    
    
 <script>
 var d = new Date();

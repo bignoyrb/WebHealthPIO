@@ -58,31 +58,29 @@ body, h1{font-family: "Montserrat", sans-serif}
          
   
     $rows = $stmt->fetchAll(); 
-?> 
-<h1>Patient Schedule for <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?>  </h1> </br>
-<table class="w3-table-all">
-    <thead>
-    <tr class="w3-teal">
-        <th>Date</th> 
-        <th>Time</th> 
-        <th>Room</th> 
-		<th>Bed</th> 
-        <th>Patient</th> 
-        <th>Notes</th> 
-    </tr> 
-    </thead>
-    <?php foreach($rows as $row): ?> 
-        <tr> 
-            <td class="w3-hover-teal"><?php echo htmlentities($row['date'], ENT_QUOTES, 'UTF-8'); ?></td> 
-            <td class="w3-hover-teal"><?php echo htmlentities($row['time'], ENT_QUOTES, 'UTF-8'); ?></td> 
-			<td class="w3-hover-teal"><?php echo htmlentities($row['room'], ENT_QUOTES, 'UTF-8'); ?></td> 
-			<td class="w3-hover-teal"><?php echo htmlentities($row['bed'], ENT_QUOTES, 'UTF-8'); ?></td> 
-			<td class="w3-hover-teal"><?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?></td> 
-			<td class="w3-hover-teal"><?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?></td> 
-	    </tr> 
-        </tr> 
-        </tr> 
-    <?php endforeach; ?> 
-</table> 
+?>
+
+<header class="w3-container w3-black w3-xxlarge">
+    <p class="w3-left">Patient Schedule: <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?> </p>
+    <p class="w3-right" id="date"></p>
+</header>
+
+<?php foreach($rows as $row): ?>
+    <div class="w3-padding-16 w3-text-black w3-bar-block" >
+        <a href="patient_visit.php" onclick="w3_close()" class="w3-bar-item w3-button w3-teal w3-hover-grey">Name: <?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?><br>
+            Date: <?php echo htmlentities($row['date'], ENT_QUOTES, 'UTF-8'); ?><br>
+            Time: <?php echo htmlentities($row['time'], ENT_QUOTES, 'UTF-8'); ?><br>
+            Room: <?php echo htmlentities($row['room'], ENT_QUOTES, 'UTF-8'); ?><br>
+            Bed: <?php echo htmlentities($row['bed'], ENT_QUOTES, 'UTF-8'); ?><br>
+            Notes: <?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?></a>
+    </div>
+<?php endforeach; ?>
+
+<script>
+    var d = new Date();
+    document.getElementById("date").innerHTML = d.toDateString();
+</script>
+
+
 </body>
 </html
