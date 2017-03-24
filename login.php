@@ -9,14 +9,9 @@
 
 <style>
 body, h1{font-family: "Montserrat", sans-serif}
-.w3-row-padding img {margin-bottom: 12px}
-.bgimg {
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: 50%, 50%;
-    background-image: url('logo2.png');
-    min-height: 100%;
-}
+
+
+
 </style>
 
 
@@ -35,7 +30,7 @@ body, h1{font-family: "Montserrat", sans-serif}
         $query = " 
             SELECT 
                 username, 
-                password, 
+                password,
                 salt
             FROM users 
             WHERE 
@@ -139,18 +134,22 @@ body, h1{font-family: "Montserrat", sans-serif}
 
     <body>
 
-    <nav class="w3-sidenav w3-hide-medium w3-hide-small" style="width:40%">
-      <div class="bgimg"></div>
+    <nav class="w3-sidebar w3-bar-block w3-teal  w3-top" style="z-index:3;width:450px" id="mySidebar">
+        <div class="w3-container w3-display-container w3-padding-13">
+            <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+            <h3 class="w3-wide w3-xxxlarge w3-text-black"><b>Patient<br>Information<br>Organizer</b></h3>
+            <img src="logo.png" class="w3-round" alt="logo" style="padding:32px;width:100%">
+        </div>
     </nav>
 
-    <div class="w3-main w3-padding-large" style="margin-left:40%">
+    <div class="w3-main w3-padding-large" style="margin-left:450px">
 
-        <header class="w3-container w3-padding-128 w3-center" id="home">
+        <header class="w3-container w3-padding-64 w3-center" id="home">
 
         </header>
 
             <h1 class="w3-jumbo"><b>Login</b></h1>
-            <form action="login.php" method="post"> 
+            <form action="login.php" style="margin-left:10px" method="post">
                 <b>Username</b><br />
                 <input type="text" name="username" value="<?php echo $submitted_username; ?>" /> 
                 <br /><br /> 
