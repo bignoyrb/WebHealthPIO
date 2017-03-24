@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <title>PIO Add Doctor</title>
 <meta charset="UTF-8">
