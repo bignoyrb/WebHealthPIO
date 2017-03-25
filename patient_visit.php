@@ -68,35 +68,33 @@ $rows = $stmt->fetchAll();
 
 <?php foreach($rows as $row): ?>
 <nav class="w3-sidebar w3-bar-block w3-teal w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
-    <div class="w3-container w3-display-container w3-padding-13">
-        <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <div class="w3-container w3-display-container w3-padding-8">
         <h3 class="w3-wide w3-text-black"><b><?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?></b></h3>
-        <img src="photos/mario-2.png" class="w3-round" alt="patientpic" style="padding:8px;width:80%">
+        <img src="photos/mario-2.png" class="w3-round" alt="patientpic" style="padding:8px;width:60%">
     </div>
 
 
-    <div class="w3-padding-13  w3-text-black" >
+    <div class="w3-padding-8  w3-text-black" >
         <a class="w3-bar-item ">Height: <?php echo htmlentities($row['height'], ENT_QUOTES, 'UTF-8'); ?> cm</a>
         <a class="w3-bar-item ">Weight <?php echo htmlentities($row['weight'], ENT_QUOTES, 'UTF-8'); ?> lbs</a>
         <a class="w3-bar-item ">Health Card Number:<br> <?php echo htmlentities($row['healthcard'], ENT_QUOTES, 'UTF-8'); ?></a>
         <a class="w3-bar-item ">DOB: <?php echo htmlentities($row['dob'], ENT_QUOTES, 'UTF-8'); ?></a>
         <a class="w3-bar-item ">Sex: <?php echo htmlentities($row['sex'], ENT_QUOTES, 'UTF-8'); ?></a>
-        <div class="w3-dropdown-hover">
-            <button class="w3-button">Existing Conditions: <i class="fa fa-caret-down"></i></button>
-            <div class="w3-dropdown-content w3-bar-block">
-                <a class="w3-bar-item w3-button">Condition 1</a>
-                <a class="w3-bar-item w3-button">Condition 2</a>
-            </div>
-        </div>
+
     </div>
 
-    <div class="w3-padding-16 w3-text-black w3-bar-block" >
+    <div class="w3-padding-8 w3-text-black w3-bar-block" >
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Medical History</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Prescriptions</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Referrals</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Imaging</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Blood Work/Tests</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Physician Notes</a>
+    </div>
+
+    <div class="w3-padding-8 w3-text-black w3-bar-block" >
+        <a href="schedule.php" class="w3-bar-item w3-button w3-hover-grey">Patient Schedule<i class="w3-margin-left fa fa-home w3-large"></i></a>
+        <a href="logout.php" class="w3-bar-item w3-button w3-hover-grey">Log Out<i class="w3-margin-left fa fa-sign-out w3-large"></i></a>
     </div>
 
 
@@ -147,11 +145,11 @@ $rows = $stmt->fetchAll();
 
         <p>
             <label class="w3-text-black"><b>Follow Up Appointment:</b></label>
-            <input class="w3-input w3-border" name="appointment" type="text"></p>
+            <input class="w3-input w3-border" name="appointment" type="date"></p>
 
         <p>
             <button class="w3-button w3-black w3-hover-grey w3-xxlarge w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xxlarge"></i></button>
-            <a href="schedule.php" class="w3-button w3-black w3-hover-grey w3-xxlarge w3-right">Patient Schedule<i class="w3-margin-left fa fa-home w3-xxlarge"></i></a></p>
+        </p>
 
     </form>
 
