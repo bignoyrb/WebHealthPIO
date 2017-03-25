@@ -43,6 +43,7 @@ $query = "
 
 $query_params = array(
     ':patid' => $_GET['patientid']
+
 );
 
 try
@@ -59,6 +60,10 @@ catch(PDOException $ex)
 
 
 $rows = $stmt->fetchAll();
+
+
+
+
 
 ?>
 
@@ -118,7 +123,7 @@ $rows = $stmt->fetchAll();
     <div class="w3-hide-large" style="margin-top:83px"></div>
 
     <!-- Top header -->
-    <header class="w3-container w3-xxlarge">
+    <header class="w3-container w3-xlarge">
         <p class="w3-left"><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></p>
         <p class="w3-right" id="date"></p>
     </header>
@@ -128,7 +133,7 @@ $rows = $stmt->fetchAll();
 <div>
     <form class="w3-container" style="margin-left:250px" action="patient_visit.php" method="post">
         <h2 class=" w3-text-black w3-xlarge">Complaint:</h2>
-        <p><b>Patient complaint goes here</b></p>
+        <p><b> Patient Complaint (notes from scedualedvisit db) goes here</b></p>
         <p>
             <label class="w3-text-black"><b>Diagnosis:</b></label>
             <input class="w3-input w3-border" name="diagnosis" type="text"></p>
@@ -148,8 +153,9 @@ $rows = $stmt->fetchAll();
             <input class="w3-input w3-border" name="appointment" type="date"></p>
 
         <p>
-            <button class="w3-button w3-black w3-hover-grey w3-xxlarge w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xxlarge"></i></button>
+            <button class="w3-button w3-black w3-hover-grey w3-xlarge w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xlarge"></i></button>
         </p>
+
 
     </form>
 
@@ -161,8 +167,6 @@ $rows = $stmt->fetchAll();
 var d = new Date();
 document.getElementById("date").innerHTML = d.toDateString();
 </script>
-
-
 
 
 

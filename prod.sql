@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2017 at 01:33 PM
+-- Generation Time: Mar 25, 2017 at 05:53 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -34,13 +34,6 @@ CREATE TABLE `imaging` (
   `assessment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `imgurl` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `imaging`
---
-
-INSERT INTO `imaging` (`id`, `patientid`, `doctorid`, `notes`, `assessment`, `imgurl`) VALUES
-(1, 1, 1, '', 'Broken Femur', '1209381203981029.pgf');
 
 -- --------------------------------------------------------
 
@@ -79,7 +72,8 @@ CREATE TABLE `patient` (
 INSERT INTO `patient` (`id`, `name`, `sex`, `height`, `weight`, `healthcard`, `dob`) VALUES
 (1, 'Jane Doe', 'F', 153, 80, '213894839421', '1993-04-26'),
 (2, 'Jane Smith', 'F', 165, 85, '213894830991', '1992-04-11'),
-(3, 'John Doe', 'M', 182, 120, '213812239421', '1989-05-16');
+(3, 'John Doe', 'M', 182, 120, '213812239421', '1989-05-16'),
+(5, 'Bryon Reynolds', 'M', 124, 135, '1234', '2004-03-04');
 
 -- --------------------------------------------------------
 
@@ -117,9 +111,10 @@ CREATE TABLE `scheduledvisit` (
 --
 
 INSERT INTO `scheduledvisit` (`id`, `patientid`, `doctorid`, `date`, `time`, `room`, `bed`, `notes`) VALUES
-(1, 1, 1, '2017-02-28', '09:00:00', '243', '2', ''),
-(3, 2, 1, '2017-02-28', '09:15:00', '101', '1', ''),
-(4, 3, 1, '2017-02-28', '09:30:00', '22', '4', '');
+(1, 1, 1, '2017-02-28', '09:00:00', '243', '2', 'Headache, loss of vision in on eye'),
+(2, 1, 1, '2017-02-28', '10:00:00', '243', '2', 'Can\'t jump.'),
+(3, 2, 1, '2017-02-28', '09:15:00', '101', '1', 'Fever, chills'),
+(4, 5, 6, '2017-02-28', '09:30:00', '22', '4', 'Sore foot');
 
 -- --------------------------------------------------------
 
@@ -135,13 +130,6 @@ CREATE TABLE `testresult` (
   `notes` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `imgurl` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `testresult`
---
-
-INSERT INTO `testresult` (`id`, `patientid`, `doctorid`, `type`, `notes`, `imgurl`) VALUES
-(1, 1, 1, 'Blood Test', 'Normal Levels', '90928301928309.pdf');
 
 -- --------------------------------------------------------
 
@@ -163,10 +151,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `salt`, `email`, `authtoken`) VALUES
-(1, 'dasmall', '2d9cb3631d9ba58f33b931a904f29da5106c781b992a743dacfd0d8343695fca', 'f4e63417457dbd3', 'dasmall@lakeheadu.ca', 'dcc5c249e15c211f21e1da0f3ba66169'),
-(2, 'bryon', '139782ba69e6411c4c725e4fe2895d93f8a5cc2f0a244b5ae09eca8bd02612a2', '4223035be82a3ed55f6759a963e76aaa', 'email@e.com', ''),
-(4, 'newuser', 'f6d80817f4345985138c038a302dd3ec64ed80967a700730ed3c72f89ca8d112', '6cd954a04bb5847a', 'user@gmail.com', '72fa288df9f22f7167dff80cf89fd4e5'),
-(5, 'admin', '246e0ca83ec82fde15dd9b78d7ca07a1956aa1b63bd08a659536235aeba2e282', '7b93b11d3fdd3f51', 'admin@localhost.com', '0bf4193e64622cc35e7af3715e30f1d6');
+(1, 'dasmall', '2d9cb3631d9ba58f33b931a904f29da5106c781b992a743dacfd0d8343695fca', 'f4e63417457dbd3', 'dasmall@lakeheadu.ca', '7fea1fb9e9b410a5a0c5d982fc6f584d'),
+(5, 'admin', '246e0ca83ec82fde15dd9b78d7ca07a1956aa1b63bd08a659536235aeba2e282', '7b93b11d3fdd3f51', 'admin@localhost.com', '1bb91f73e9d31ea2830a5e73ce3ed328'),
+(6, 'bryontest', '27ac4fff74f28a30587012d5f6a82926bcd1aa9f79caeded008b17c3bedd81ea', '309e594b3d20f8a5', 'b@b.com', 'f0b1d5879866f2c2eba77f39993d1184');
 
 -- --------------------------------------------------------
 
@@ -184,13 +171,6 @@ CREATE TABLE `visit` (
   `diagnoses` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `treatment` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `visit`
---
-
-INSERT INTO `visit` (`id`, `patientid`, `doctorid`, `date`, `time`, `notes`, `diagnoses`, `treatment`) VALUES
-(1, 1, 1, '2017-02-27', '07:00:00', '', 'Common Cold', 'Rest');
 
 --
 -- Indexes for dumped tables
@@ -254,7 +234,7 @@ ALTER TABLE `visit`
 -- AUTO_INCREMENT for table `imaging`
 --
 ALTER TABLE `imaging`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `notes`
 --
@@ -264,7 +244,7 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `referral`
 --
@@ -279,17 +259,12 @@ ALTER TABLE `scheduledvisit`
 -- AUTO_INCREMENT for table `testresult`
 --
 ALTER TABLE `testresult`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `visit`
---
-ALTER TABLE `visit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

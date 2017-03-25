@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Patient Schedule</title>
+<title>PIO Patient Schedule</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
@@ -14,7 +14,6 @@ body, h1{font-family: "Montserrat", sans-serif}
 
 <?php 
 
-   
     require("common.php"); 
      
         
@@ -35,6 +34,7 @@ body, h1{font-family: "Montserrat", sans-serif}
 			room,
 			bed,
 			notes,
+			patient.id,
 			patient.name
         FROM scheduledvisit 
 		INNER JOIN patient ON scheduledvisit.patientid = patient.id
@@ -42,7 +42,7 @@ body, h1{font-family: "Montserrat", sans-serif}
 		WHERE users.username = :username
     "; 
     $query_params = array( 
-           ':username' => $_SESSION['user']['username'] 
+           ':username' => $_SESSION['user']['username']
        ); 
     try 
     { 
@@ -57,22 +57,23 @@ body, h1{font-family: "Montserrat", sans-serif}
     } 
          
   
-    $rows = $stmt->fetchAll(); 
+    $rows = $stmt->fetchAll();
+
 ?>
 
-<header class="w3-container w3-black w3-xxlarge">
+<header class="w3-container w3-black w3-xlarge">
     <p class="w3-left">Patient Schedule: <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?> </p>
     <p class="w3-right" id="date"></p>
 </header>
 
 <?php foreach($rows as $row): ?>
-    <div class="w3-padding-16 w3-text-black w3-bar-block" >
-        <a href="patient_visit.php" onclick="w3_close()" class="w3-bar-item w3-button w3-teal w3-hover-grey">Name: <?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?><br>
+    <div class="w3-padding-16 w3-text-black w3-bar-block w3-large" >
+        <a href="patient_visit.php?patientid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>"  class="w3-bar-item w3-button w3-teal w3-hover-grey">Name: <?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?><br>
             Date: <?php echo htmlentities($row['date'], ENT_QUOTES, 'UTF-8'); ?><br>
             Time: <?php echo htmlentities($row['time'], ENT_QUOTES, 'UTF-8'); ?><br>
             Room: <?php echo htmlentities($row['room'], ENT_QUOTES, 'UTF-8'); ?><br>
             Bed: <?php echo htmlentities($row['bed'], ENT_QUOTES, 'UTF-8'); ?><br>
-            Notes: <?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?></a>
+            Complaint: <?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?></a>
     </div>
 <?php endforeach; ?>
 
