@@ -12,24 +12,77 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
 
 </style>
 
+<?php
+
+require("common.php");
+
+
+if(empty($_SESSION['user']))
+{
+
+    header("Location: login.php");
+
+
+    die("Redirecting to login.php");
+}
+
+
+
+$query = " 
+        SELECT 
+            name,
+			sex,
+			height,
+			weight,
+			healthcard,
+			dob
+        FROM patient 
+        WHERE id = :patid
+	  
+    ";
+
+$query_params = array(
+    ':patid' => $_GET['patientid']
+);
+
+try
+{
+
+    $stmt = $db->prepare($query);
+    $stmt->execute($query_params);
+}
+catch(PDOException $ex)
+{
+
+    die("Failed to run query: " . $ex->getMessage());
+}
+
+
+$rows = $stmt->fetchAll();
+
+?>
+
 
 <body>
 <!-- Sidebar/menu -->
+
+<?php foreach($rows as $row): ?>
 <nav class="w3-sidebar w3-bar-block w3-teal w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-13">
         <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-        <h3 class="w3-wide w3-text-black"><b>Patient<br>Name</b></h3>
+        <h3 class="w3-wide w3-text-black"><b><?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?></b></h3>
         <img src="photos/mario-2.png" class="w3-round" alt="patientpic" style="padding:8px;width:80%">
     </div>
 
+
     <div class="w3-padding-13  w3-text-black" >
-        <a class="w3-bar-item ">Height: 5'0"</a>
-        <a class="w3-bar-item ">Weight 193 lbs</a>
-        <a class="w3-bar-item ">Health Card Number:<br> 123 456 789</a>
-        <a class="w3-bar-item ">DOB: 09/12/1981</a>
-        <a class="w3-bar-item ">Blood Preasure: 200/80</a>
+        <a class="w3-bar-item ">Height: <?php echo htmlentities($row['height'], ENT_QUOTES, 'UTF-8'); ?> cm</a>
+        <a class="w3-bar-item ">Weight <?php echo htmlentities($row['weight'], ENT_QUOTES, 'UTF-8'); ?> lbs</a>
+        <a class="w3-bar-item ">Health Card Number:<br> <?php echo htmlentities($row['healthcard'], ENT_QUOTES, 'UTF-8'); ?></a>
+        <a class="w3-bar-item ">DOB: <?php echo htmlentities($row['dob'], ENT_QUOTES, 'UTF-8'); ?></a>
+        <a class="w3-bar-item ">Sex: <?php echo htmlentities($row['sex'], ENT_QUOTES, 'UTF-8'); ?></a>
         <div class="w3-dropdown-hover">
-            <button class="w3-button">Other Conditions: <i class="fa fa-caret-down"></i></button>
+            <button class="w3-button">Existing Conditions: <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block">
                 <a class="w3-bar-item w3-button">Condition 1</a>
                 <a class="w3-bar-item w3-button">Condition 2</a>
@@ -39,15 +92,17 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
 
     <div class="w3-padding-16 w3-text-black w3-bar-block" >
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Medical History</a>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Perscriptions</a>
+        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Prescriptions</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Referrals</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Imaging</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Blood Work/Tests</a>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Physican Notes</a>
+        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Physician Notes</a>
     </div>
 
-    
+
 </nav>
+
+<?php endforeach; ?>
 
 <!-- Top menu on small screens -->
 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
@@ -66,14 +121,14 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
 
     <!-- Top header -->
     <header class="w3-container w3-xxlarge">
-        <p class="w3-left">Dr. Name</p>
+        <p class="w3-left"><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></p>
         <p class="w3-right" id="date"></p>
     </header>
 
 </div>
 
 <div>
-    <form class="w3-container" style="margin-left:250px" action="/action_page.php">
+    <form class="w3-container" style="margin-left:250px" action="patient_visit.php" method="post">
         <h2 class=" w3-text-black w3-xlarge">Complaint:</h2>
         <p><b>Patient complaint goes here</b></p>
         <p>
@@ -96,11 +151,10 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
 
         <p>
             <button class="w3-button w3-black w3-hover-grey w3-xxlarge w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xxlarge"></i></button>
-            <a href="schedule.php" class="w3-button w3-black w3-hover-grey w3-xxlarge w3-right">Home<i class="w3-margin-left fa fa-home w3-xxlarge"></i></a></p>
+            <a href="schedule.php" class="w3-button w3-black w3-hover-grey w3-xxlarge w3-right">Patient Schedule<i class="w3-margin-left fa fa-home w3-xxlarge"></i></a></p>
+
     </form>
 
-    
-   
 
 </div>
 
@@ -109,6 +163,9 @@ body, h1,h2,h3{font-family: "Montserrat", sans-serif}
 var d = new Date();
 document.getElementById("date").innerHTML = d.toDateString();
 </script>
+
+
+
 
 
 </body>
