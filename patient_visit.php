@@ -3,6 +3,8 @@
 <title>Patient Visit</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="jquery-3.2.0.min.js"></script>
+<script src="jquery.easy-autocomplete.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,7 +13,41 @@
 body, h1,h2,h3{font-family: "Montserrat", sans-serif}
 
 </style>
+<script>
+var all = [];
+function getauto(id) {
+		$.getJSON("http://mapi-us.iterar.co/api/autocomplete?query="+id+"&format=json&callback=?",
+		function(data) {
+			console.log(data.suggestions);
+			all = all.concat(data.suggestions);
+			var uniqueNames = [];
+			$.each(all, function(i, el){
+				if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+			});
+			all = uniqueNames;
+			console.log(all);
+			var options = {
+			  data: all,
 
+
+			  list: {	
+				match: {
+				  enabled: true
+				}
+			  },
+
+			  theme: "square"
+			};
+			
+			console.log(options);
+
+			
+			
+			$("#scrip").easyAutocomplete(options); 
+			$('#scrip').focus();
+		}); 
+}
+</script>
 <?php
 
 require("common.php");
@@ -142,7 +178,7 @@ $rows = $stmt->fetchAll();
             <input class="w3-input w3-border" name="treatment" type="text"></p>
         <p>
             <label class="w3-text-black"><b>Prescription:</b></label>
-            <input class="w3-input w3-border" name="prescription" type="text"></p>
+            <input class="w3-input w3-border" id="scrip" name="prescription" type="text" oninput="getauto(this.value);"></p>
 		<p>	
 			<label class="w3-text-black"><b>Dosage:</b></label>
             <input class="w3-input w3-border" name="dosage" type="text"></p>
@@ -171,9 +207,7 @@ $rows = $stmt->fetchAll();
 
 </div>
   
-<script>
 
-</script>
 
 
 </body>
