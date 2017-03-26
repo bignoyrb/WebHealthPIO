@@ -34,7 +34,7 @@ body, h1{font-family: "Montserrat", sans-serif}
 			room,
 			bed,
 			notes,
-			patient.id,
+			scheduledvisit.id,
 			patient.name
         FROM scheduledvisit 
 		INNER JOIN patient ON scheduledvisit.patientid = patient.id
@@ -68,7 +68,7 @@ body, h1{font-family: "Montserrat", sans-serif}
 
 <?php foreach($rows as $row): ?>
     <div class="w3-padding-16 w3-text-black w3-bar-block w3-large" >
-        <a href="patient_visit.php?patientid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>"  class="w3-bar-item w3-button w3-teal w3-hover-grey">Name: <?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?><br>
+        <a href="patient_visit.php?id=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>"  class="w3-bar-item w3-button w3-teal w3-hover-grey">Name: <?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?><br>
             Date: <?php echo htmlentities($row['date'], ENT_QUOTES, 'UTF-8'); ?><br>
             Time: <?php echo htmlentities($row['time'], ENT_QUOTES, 'UTF-8'); ?><br>
             Room: <?php echo htmlentities($row['room'], ENT_QUOTES, 'UTF-8'); ?><br>

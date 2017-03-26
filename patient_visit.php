@@ -30,19 +30,22 @@ if(empty($_SESSION['user']))
 
 $query = " 
         SELECT 
-            name,
-			sex,
-			height,
-			weight,
-			healthcard,
-			dob
-        FROM patient 
-        WHERE id = :patid
+            notes,
+            patient.name,
+			patient.sex,
+			patient.height,
+			patient.weight,
+			patient.healthcard,
+			patient.dob,
+			patient.id
+        FROM scheduledvisit 
+		INNER JOIN patient ON scheduledvisit.patientid = patient.id
+        WHERE scheduledvisit.id = :id
 	  
     ";
 
 $query_params = array(
-    ':patid' => $_GET['patientid']
+    ':id' => $_GET['id']
 
 );
 
@@ -105,7 +108,7 @@ $rows = $stmt->fetchAll();
 
 </nav>
 
-<?php endforeach; ?>
+
 
 <!-- Top menu on small screens -->
 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
@@ -133,7 +136,7 @@ $rows = $stmt->fetchAll();
 <div>
     <form class="w3-container" style="margin-left:250px" action="patient_visit.php" method="post">
         <h2 class=" w3-text-black w3-xlarge">Complaint:</h2>
-        <p><b> Patient Complaint (notes from scedualedvisit db) goes here</b></p>
+        <p><b> <?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?> </b></p>
         <p>
             <label class="w3-text-black"><b>Diagnosis:</b></label>
             <input class="w3-input w3-border" name="diagnosis" type="text"></p>
@@ -158,7 +161,7 @@ $rows = $stmt->fetchAll();
 
 
     </form>
-
+    <?php endforeach; ?>
 
 </div>
 
