@@ -133,7 +133,8 @@ $rows = $stmt->fetchAll();
 </div>
 
 <div>
-    <form class="w3-container" style="margin-left:250px" action="patient_visit.php" method="post">
+
+	<form class="w3-container" style="margin-left:250px" action="patient_visit_finish.php?id=<?php echo $_GET['id'] ?>" method="post">
         <h2 class=" w3-text-black w3-xlarge">Complaint:</h2>
         <p><b> <?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?> </b></p>
         <p>
@@ -145,7 +146,9 @@ $rows = $stmt->fetchAll();
         <p>
             <label class="w3-text-black"><b>Prescription:</b></label>
             <input class="w3-input w3-border" name="prescription" type="text"></p>
-
+		<p>	
+			<label class="w3-text-black"><b>Dosage:</b></label>
+            <input class="w3-input w3-border" name="dosage" type="text"></p>
         <p>
             <label class="w3-text-black"><b>Referral:</b></label>
             <input class="w3-input w3-border" name="referral" type="text"></p>
@@ -163,13 +166,10 @@ $rows = $stmt->fetchAll();
     <?php endforeach; ?>
 
 </div>
-
-   
+  
 <script>
-var d = new Date();
-document.getElementById("date").innerHTML = d.toDateString();
-</script>
 
+</script>
 
 
 </body>
