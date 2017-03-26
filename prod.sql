@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2017 at 05:43 PM
+-- Generation Time: Mar 26, 2017 at 07:59 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -41,7 +41,7 @@ CREATE TABLE `imaging` (
 --
 
 INSERT INTO `imaging` (`id`, `patientid`, `doctorid`, `notes`, `assessment`, `imgurl`, `imagedate`) VALUES
-(1, 1, 6, 'None', 'Looks good', '', '2017-03-26');
+(1, 1, 6, 'None', 'Looks good', 'testimage/legxray.jpg', '2017-03-26');
 
 -- --------------------------------------------------------
 
@@ -176,7 +176,7 @@ CREATE TABLE `testresult` (
 --
 
 INSERT INTO `testresult` (`id`, `patientid`, `doctorid`, `type`, `notes`, `imgurl`, `date`) VALUES
-(1, 1, 1, 'Blood work', 'Looks good', '', '2017-03-26');
+(1, 1, 1, 'Blood work', 'Looks good', 'testimage/bloodtest.jpg', '2017-03-26');
 
 -- --------------------------------------------------------
 
@@ -198,7 +198,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `salt`, `email`, `authtoken`) VALUES
-(1, 'dasmall', '2d9cb3631d9ba58f33b931a904f29da5106c781b992a743dacfd0d8343695fca', 'f4e63417457dbd3', 'dasmall@lakeheadu.ca', '7357b0fb2ec0541b99592b5612f87b92'),
+(1, 'dasmall', '2d9cb3631d9ba58f33b931a904f29da5106c781b992a743dacfd0d8343695fca', 'f4e63417457dbd3', 'dasmall@lakeheadu.ca', '062a781089e948d29ba79b89499a1120'),
 (5, 'admin', '246e0ca83ec82fde15dd9b78d7ca07a1956aa1b63bd08a659536235aeba2e282', '7b93b11d3fdd3f51', 'admin@localhost.com', '481fbfa59da2581098e841b7afc122f1'),
 (6, 'Bryon Reynolds', '27ac4fff74f28a30587012d5f6a82926bcd1aa9f79caeded008b17c3bedd81ea', '309e594b3d20f8a5', 'b@b.com', 'f0b1d5879866f2c2eba77f39993d1184');
 

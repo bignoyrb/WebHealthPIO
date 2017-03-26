@@ -62,8 +62,8 @@ body, h1{font-family: "Montserrat", sans-serif}
 ?>
 
 <header class="w3-container w3-black w3-xlarge">
-    <p class="w3-left">Referrals </p>
-
+    <p    class="w3-left">Referrals </p>
+    <p class="w3-button w3-black w3-hover-grey w3-xlarge w3-right" onclick="goBack()">Back <i class="w3-margin-left fa fa-arrow-left w3-xlarge"></i></p>
 </header>
 
 <?php foreach($rows as $row): ?>
@@ -76,9 +76,9 @@ body, h1{font-family: "Montserrat", sans-serif}
     </div>
 <?php endforeach; ?>
 
-    <button class="w3-button w3-black w3-hover-grey w3-xlarge w3-left" onclick="goBack()">Back <i class="w3-margin-left fa fa-arrow-left w3-xlarge"></i></button>
 
-        <script>
+
+<script>
         function goBack() {
             window.history.back();
         }
