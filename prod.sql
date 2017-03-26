@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2017 at 05:53 PM
+-- Generation Time: Mar 26, 2017 at 02:02 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -78,16 +78,47 @@ INSERT INTO `patient` (`id`, `name`, `sex`, `height`, `weight`, `healthcard`, `d
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `perscription`
+--
+
+CREATE TABLE `perscription` (
+  `id` int(11) NOT NULL,
+  `drugname` varchar(256) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `dose` varchar(256) CHARACTER SET ucs2 COLLATE ucs2_unicode_ci NOT NULL,
+  `patientid` int(11) NOT NULL,
+  `doctorid` int(11) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `perscription`
+--
+
+INSERT INTO `perscription` (`id`, `drugname`, `dose`, `patientid`, `doctorid`, `date`) VALUES
+(1, 'Drug 1', '2X Day 3X week', 1, 1, '2017-03-01');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `referral`
 --
 
 CREATE TABLE `referral` (
   `id` int(11) NOT NULL,
   `notes` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `idreferral` int(11) NOT NULL,
-  `idreferring` int(11) NOT NULL,
-  `date` date NOT NULL
+  `patientid` int(11) NOT NULL,
+  `doctorid` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `refdoctorname` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `doctortype` varchar(246) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `referral`
+--
+
+INSERT INTO `referral` (`id`, `notes`, `patientid`, `doctorid`, `date`, `refdoctorname`, `doctortype`) VALUES
+(1, 'Check his back.', 1, 1, '2017-03-16', 'Dr. Reynolds', 'Bone Doctor');
 
 -- --------------------------------------------------------
 
@@ -151,8 +182,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `salt`, `email`, `authtoken`) VALUES
-(1, 'dasmall', '2d9cb3631d9ba58f33b931a904f29da5106c781b992a743dacfd0d8343695fca', 'f4e63417457dbd3', 'dasmall@lakeheadu.ca', '7fea1fb9e9b410a5a0c5d982fc6f584d'),
-(5, 'admin', '246e0ca83ec82fde15dd9b78d7ca07a1956aa1b63bd08a659536235aeba2e282', '7b93b11d3fdd3f51', 'admin@localhost.com', '1bb91f73e9d31ea2830a5e73ce3ed328'),
+(1, 'dasmall', '2d9cb3631d9ba58f33b931a904f29da5106c781b992a743dacfd0d8343695fca', 'f4e63417457dbd3', 'dasmall@lakeheadu.ca', '7357b0fb2ec0541b99592b5612f87b92'),
+(5, 'admin', '246e0ca83ec82fde15dd9b78d7ca07a1956aa1b63bd08a659536235aeba2e282', '7b93b11d3fdd3f51', 'admin@localhost.com', '481fbfa59da2581098e841b7afc122f1'),
 (6, 'bryontest', '27ac4fff74f28a30587012d5f6a82926bcd1aa9f79caeded008b17c3bedd81ea', '309e594b3d20f8a5', 'b@b.com', 'f0b1d5879866f2c2eba77f39993d1184');
 
 -- --------------------------------------------------------
@@ -171,6 +202,15 @@ CREATE TABLE `visit` (
   `diagnoses` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `treatment` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `visit`
+--
+
+INSERT INTO `visit` (`id`, `patientid`, `doctorid`, `date`, `time`, `notes`, `diagnoses`, `treatment`) VALUES
+(1, 1, 1, '2017-03-08', '06:00:00', 'Patient seems hungry.', 'Patient is hungry.', 'Feed patient.'),
+(2, 6, 5, '2017-03-31', '09:24:00', '', 'Optic nerve failure.', 'Put in new eye'),
+(3, 1, 1, '2017-03-07', '05:00:17', 'Strange smell.', 'Has gas.', 'Give gas pills');
 
 --
 -- Indexes for dumped tables
@@ -192,6 +232,12 @@ ALTER TABLE `notes`
 -- Indexes for table `patient`
 --
 ALTER TABLE `patient`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `perscription`
+--
+ALTER TABLE `perscription`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -244,12 +290,17 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `perscription`
+--
+ALTER TABLE `perscription`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `referral`
 --
 ALTER TABLE `referral`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `scheduledvisit`
 --
