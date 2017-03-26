@@ -31,6 +31,8 @@ if(empty($_SESSION['user']))
 $query = " 
         SELECT 
             notes,
+            room,
+            bed,
             patient.name,
 			patient.sex,
 			patient.height,
@@ -95,8 +97,8 @@ $rows = $stmt->fetchAll();
         <a href="patient_history.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>"  class="w3-bar-item w3-button w3-hover-grey">Medical History</a>
         <a href="perscription.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>"  class="w3-bar-item w3-button w3-hover-grey">Prescriptions</a>
         <a href="referral.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>"  class="w3-bar-item w3-button w3-hover-grey">Referrals</a>
-        <a href="image.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Imaging</a>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Blood Work/Tests</a>
+        <a href="image.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>" class="w3-bar-item w3-button w3-hover-grey">Imaging</a>
+        <a href="test.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>" class="w3-bar-item w3-button w3-hover-grey">Blood Work/Tests</a>
     </div>
 
     <div class="w3-padding-16 w3-text-black w3-bar-block" >
@@ -109,16 +111,6 @@ $rows = $stmt->fetchAll();
 
 
 
-<!-- Top menu on small screens -->
-<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-    <div class="w3-bar-item w3-padding-24 w3-wide">Patient name</div>
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right " onclick="w3_open()"><i class="fa fa-bars"></i></a>
-</header>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-
 <div class="w3-main w3-black" style="margin-left:250px">
 
     <!-- Push down content on small screens -->
@@ -126,8 +118,14 @@ $rows = $stmt->fetchAll();
 
     <!-- Top header -->
     <header class="w3-container w3-xlarge">
-        <p class="w3-left"><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></p>
-        <p class="w3-right" id="date"></p>
+        <p class="w3-left "><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></p>
+        <p class="w3-right " id="date"></p>
+
+    </header>
+    <header class="w3-container w3-large">
+
+        <p class="w3-left ">Room: <?php echo htmlentities($row['room'], ENT_QUOTES, 'UTF-8'); ?></p>
+        <p class="w3-right">Bed: <?php echo htmlentities($row['bed'], ENT_QUOTES, 'UTF-8'); ?></p>
     </header>
 
 </div>
@@ -157,8 +155,15 @@ $rows = $stmt->fetchAll();
             <label class="w3-text-black"><b>Follow Up Appointment:</b></label>
             <input class="w3-input w3-border" name="appointment" type="date"></p>
 
+        
+		<p>
+            <label class="w3-text-black"><b>Follow Up Time (Preferred):</b></label>
+            <input class="w3-input w3-border" name="time" type="time"></p>
+		<p>
+            <label class="w3-text-black"><b>Notes for Follow Up:</b></label>
+            <input class="w3-input w3-border" name="fnotes" type="test"></p>
         <p>
-            <button class="w3-button w3-black w3-hover-grey w3-xlarge w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xlarge"></i></button>
+            <button class="w3-button w3-black w3-hover-grey w3-large w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xlarge"></i></button>
         </p>
 
 

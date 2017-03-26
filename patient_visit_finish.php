@@ -121,10 +121,10 @@ if(htmlspecialchars($_POST['appointment'])!="") {
 		':date' => htmlspecialchars($_POST['appointment']),
 		':pid' => $patientid,
 		':did' => $doctorid,
-		':time' => $time,
+		':time' => htmlspecialchars($_POST['date']),
 		':room' => "",
 		':bed' => "",
-		':notes' => "",
+		':notes' => htmlspecialchars($_POST['fnotes']),
 	);
 	try
 	{
