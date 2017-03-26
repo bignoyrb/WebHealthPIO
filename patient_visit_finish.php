@@ -12,7 +12,7 @@ if(empty($_SESSION['user']))
 
     die("Redirecting to login.php");
 }
-
+header("Location: schedule.php");
 
 
 $query = " 
@@ -121,7 +121,7 @@ if(htmlspecialchars($_POST['appointment'])!="") {
 		':date' => htmlspecialchars($_POST['appointment']),
 		':pid' => $patientid,
 		':did' => $doctorid,
-		':time' => htmlspecialchars($_POST['date']),
+		':time' => htmlspecialchars($_POST['time']),
 		':room' => "",
 		':bed' => "",
 		':notes' => htmlspecialchars($_POST['fnotes']),
@@ -162,6 +162,7 @@ catch(PDOException $ex)
 
     die("Failed to run query: " . $ex->getMessage());
 }
+die();
 ?>
 <html>
 <body>

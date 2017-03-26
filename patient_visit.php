@@ -134,8 +134,7 @@ $rows = $stmt->fetchAll();
 
 	<form class="w3-container" style="margin-left:250px" action="patient_visit_finish.php?id=<?php echo $_GET['id'] ?>" method="post">
         <h2 class=" w3-text-black w3-xlarge">Complaint:</h2>
-        <p><b> <?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?> </b></p>
-        <p>
+		<p>
             <label class="w3-text-black"><b>Diagnosis:</b></label>
             <input class="w3-input w3-border" name="diagnosis" type="text"></p>
         <p>
