@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>PIO Referral</title>
+<title>PIO Imaging</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
@@ -29,16 +29,15 @@ body, h1{font-family: "Montserrat", sans-serif}
   
     $query = " 
         SELECT 
-            date,
-			notes,
-			refdoctorname,
-			doctortype,
+            imagedate,
+			imgurl, 
+			assessment,
 			patient.name,
 			users.username
-        FROM referral 
-		INNER JOIN patient ON referral.patientid = patient.id
-		INNER JOIN users ON referral.doctorid = users.id
-		WHERE referral.patientid =:pid 
+        FROM imaging 
+		INNER JOIN patient ON imaging.patientid = patient.id
+		INNER JOIN users ON imaging.doctorid = users.id
+		WHERE imaging.patientid =:pid 
     "; 
     $query_params = array( 
 
@@ -62,26 +61,25 @@ body, h1{font-family: "Montserrat", sans-serif}
 ?>
 
 <header class="w3-container w3-black w3-xlarge">
-    <p class="w3-left">Referrals </p>
+    <p class="w3-left">Imaging </p>
 
 </header>
 
 <?php foreach($rows as $row): ?>
     <div class="w3-padding-16 w3-text-black w3-bar-block w3-large" >
-        <a href="#" class="w3-bar-item w3-button w3-teal w3-hover-grey">Referring Doctor: <?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?>, <?php echo htmlentities($row['doctortype'], ENT_QUOTES, 'UTF-8'); ?><br>
-            Referral Doctor: <?php echo htmlentities($row['refdoctorname'], ENT_QUOTES, 'UTF-8'); ?><br>
-            Date: <?php echo htmlentities($row['date'], ENT_QUOTES, 'UTF-8'); ?><br>
-            Notes: <?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?>
+        <a href="#" class="w3-bar-item w3-button w3-teal w3-hover-grey">Radiologist: Dr.  <?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?><br>
+            Date: <?php echo htmlentities($row['imagedate'], ENT_QUOTES, 'UTF-8'); ?><br>
+            Assessment: <?php echo htmlentities($row['assessment'], ENT_QUOTES, 'UTF-8'); ?><br>
           </a>
     </div>
 <?php endforeach; ?>
 
-    <button class="w3-button w3-black w3-hover-grey w3-xlarge w3-left" onclick="goBack()">Back <i class="w3-margin-left fa fa-arrow-left w3-xlarge"></i></button>
+<button class="w3-button w3-black w3-hover-grey w3-xlarge w3-left" onclick="goBack()">Back <i class="w3-margin-left fa fa-arrow-left w3-xlarge"></i></button>
 
-        <script>
-        function goBack() {
-            window.history.back();
-        }
+<script>
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 

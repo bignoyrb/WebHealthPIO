@@ -95,12 +95,11 @@ $rows = $stmt->fetchAll();
         <a href="patient_history.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>"  class="w3-bar-item w3-button w3-hover-grey">Medical History</a>
         <a href="perscription.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>"  class="w3-bar-item w3-button w3-hover-grey">Prescriptions</a>
         <a href="referral.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>"  class="w3-bar-item w3-button w3-hover-grey">Referrals</a>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Imaging</a>
+        <a href="image.php?pid=<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8'); ?>" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Imaging</a>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Blood Work/Tests</a>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-grey">Physician Notes</a>
     </div>
 
-    <div class="w3-padding-8 w3-text-black w3-bar-block" >
+    <div class="w3-padding-16 w3-text-black w3-bar-block" >
         <a href="schedule.php" class="w3-bar-item w3-button w3-hover-grey">Patient Schedule<i class="w3-margin-left fa fa-home w3-large"></i></a>
         <a href="logout.php" class="w3-bar-item w3-button w3-hover-grey">Log Out<i class="w3-margin-left fa fa-sign-out w3-large"></i></a>
     </div>
