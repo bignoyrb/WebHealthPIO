@@ -31,6 +31,8 @@ if(empty($_SESSION['user']))
 $query = " 
         SELECT 
             notes,
+            room,
+            bed,
             patient.name,
 			patient.sex,
 			patient.height,
@@ -109,16 +111,6 @@ $rows = $stmt->fetchAll();
 
 
 
-<!-- Top menu on small screens -->
-<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-    <div class="w3-bar-item w3-padding-24 w3-wide">Patient name</div>
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right " onclick="w3_open()"><i class="fa fa-bars"></i></a>
-</header>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-
 <div class="w3-main w3-black" style="margin-left:250px">
 
     <!-- Push down content on small screens -->
@@ -126,8 +118,14 @@ $rows = $stmt->fetchAll();
 
     <!-- Top header -->
     <header class="w3-container w3-xlarge">
-        <p class="w3-left"><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></p>
-        <p class="w3-right" id="date"></p>
+        <p class="w3-left "><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></p>
+        <p class="w3-right " id="date"></p>
+
+    </header>
+    <header class="w3-container w3-large">
+
+        <p class="w3-left ">Room: <?php echo htmlentities($row['room'], ENT_QUOTES, 'UTF-8'); ?></p>
+        <p class="w3-right">Bed: <?php echo htmlentities($row['bed'], ENT_QUOTES, 'UTF-8'); ?></p>
     </header>
 
 </div>
@@ -155,7 +153,7 @@ $rows = $stmt->fetchAll();
             <input class="w3-input w3-border" name="appointment" type="date"></p>
 
         <p>
-            <button class="w3-button w3-black w3-hover-grey w3-xlarge w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xlarge"></i></button>
+            <button class="w3-button w3-black w3-hover-grey w3-large w3-left">Finish Visit <i class="w3-margin-left fa fa-check w3-xlarge"></i></button>
         </p>
 
 
