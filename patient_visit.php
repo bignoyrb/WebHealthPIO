@@ -180,8 +180,17 @@ $rows = $stmt->fetchAll();
             <label class="w3-text-black"><b>Prescription:</b></label>
             <input class="w3-input w3-border" id="scrip" name="prescription" type="text" oninput="getauto(this.value);"></p>
 		<p>	
-			<label class="w3-text-black"><b>Dosage:</b></label>
-            <input class="w3-input w3-border" name="dosage" type="text"></p>
+			<label class="w3-text-black"><b>Dosage per Day:</b></label>
+            <select class="w3-select w3-border" name="dosage" type="text">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1X Day">1X Day</option>
+                <option value="2X Day">2X Day</option>
+                <option value="3X Day">3X Day</option>
+                <option value="4X Day">4X Day</option>
+                <option value="5X Day">5X Day</option>
+            </select>
+          </p>
+
         <p>
             <label class="w3-text-black"><b>Referral:</b></label>
             <input class="w3-input w3-border" name="referral" type="text"></p>
