@@ -154,7 +154,7 @@ $rows = $stmt->fetchAll();
 
     <!-- Top header -->
     <header class="w3-container w3-xlarge">
-        <p class="w3-left "><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></p>
+        <p class="w3-left ">Dr. <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></p>
         <p class="w3-right " id="date"></p>
 
     </header>
@@ -169,7 +169,7 @@ $rows = $stmt->fetchAll();
 <div>
 
 	<form class="w3-container" style="margin-left:250px" action="patient_visit_finish.php?id=<?php echo $_GET['id'] ?>" method="post">
-        <h2 class=" w3-text-black w3-xlarge">Complaint:</h2>
+        <h2 class=" w3-text-black w3-large">Complaint:<br> <?php echo htmlentities($row['notes'], ENT_QUOTES, 'UTF-8'); ?></h2>
 		<p>
             <label class="w3-text-black"><b>Diagnosis:</b></label>
             <input class="w3-input w3-border" name="diagnosis" type="text"></p>
@@ -189,7 +189,6 @@ $rows = $stmt->fetchAll();
         <p>
             <label class="w3-text-black"><b>Follow Up Appointment:</b></label>
             <input class="w3-input w3-border" name="appointment" type="date"></p>
-
         
 		<p>
             <label class="w3-text-black"><b>Follow Up Time (Preferred):</b></label>
@@ -206,8 +205,11 @@ $rows = $stmt->fetchAll();
     <?php endforeach; ?>
 
 </div>
-  
 
+<script>
+    var d = new Date();
+    document.getElementById("date").innerHTML = d.toDateString();
+</script>
 
 
 </body>
