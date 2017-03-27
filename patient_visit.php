@@ -194,7 +194,12 @@ $rows = $stmt->fetchAll();
         <p>
             <label class="w3-text-black"><b>Referral:</b></label>
             <input class="w3-input w3-border" name="referral" type="text"></p>
-
+		<p>
+            <label class="w3-text-black"><b>Referral Type:</b></label>
+            <input class="w3-input w3-border" name="referraltype" type="text"></p>
+		<p>
+            <label class="w3-text-black"><b>Referral Notes:</b></label>
+            <input class="w3-input w3-border" name="referralnotes" type="text"></p>
         <p>
             <label class="w3-text-black"><b>Follow Up Appointment:</b></label>
             <input class="w3-input w3-border" name="appointment" type="date"></p>

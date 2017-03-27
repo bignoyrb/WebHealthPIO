@@ -140,6 +140,35 @@ if(htmlspecialchars($_POST['appointment'])!="") {
 	}
 }
 
+if(htmlspecialchars($_POST['referral'])!="") {
+
+	$query = " 
+			INSERT INTO referral (notes,patientid,date,refdoctorname,doctortype)
+			VALUES (:notes,:pid,:date,:refdoctorname,:doctortype)
+		";
+
+	$query_params = array(
+		':date' => $date,
+		':pid' => $patientid,
+		':notes' => htmlspecialchars($_POST['referralnotes']),
+		':refdoctorname' => htmlspecialchars($_POST['referral']),
+		':doctortype' => htmlspecialchars($_POST['referraltype']),
+	);
+	try
+	{
+
+		$stmt = $db->prepare($query);
+		$stmt->execute($query_params);
+	}
+
+	catch(PDOException $ex)
+	{
+
+		die("Failed to run query: " . $ex->getMessage());
+	}
+}
+
+
 $query = " 
         DELETE
         FROM scheduledvisit 

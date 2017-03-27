@@ -61,7 +61,7 @@
     <div class="w3-padding-8 w3-text-black w3-bar-block" >
         <a href="register.php" class="w3-bar-item w3-button w3-black w3-hover-grey">Add Doctor</a><br>
         <a href="patient_register.php"  class="w3-bar-item w3-button w3-black w3-hover-grey">Add Patient</a><br>
-        <a href="#"  class="w3-bar-item w3-button w3-black w3-hover-grey">Add Visit</a><br>
+        <a href="visit_add.php"  class="w3-bar-item w3-button w3-black w3-hover-grey">Add Visit</a><br>
         <a href="logout.php" class="w3-bar-item w3-button w3-black w3-hover-grey">Logout</a>
     </div>
 
