@@ -70,6 +70,7 @@ $query = "
             room,
             bed,
             patient.name,
+            patient.photourl,
 			patient.sex,
 			patient.height,
 			patient.weight,
@@ -116,7 +117,7 @@ $rows = $stmt->fetchAll();
 <nav class="w3-sidebar w3-bar-block w3-teal w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-8">
         <h3 class="w3-wide w3-text-black"><b><?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?></b></h3>
-        <img src="photos/mario-2.png" class="w3-round" alt="patientpic" style="padding:8px;width:60%">
+        <img src="<?php echo htmlentities($row['photourl'], ENT_QUOTES, 'UTF-8'); ?>" class="w3-round" alt="patientpic" style="padding:8px;width:60%">
     </div>
 
 
@@ -179,10 +180,10 @@ $rows = $stmt->fetchAll();
         <p>
             <label class="w3-text-black"><b>Prescription:</b></label>
             <input class="w3-input w3-border" id="scrip" name="prescription" type="text" oninput="getauto(this.value);"></p>
-		<p>	
+		<p>
 			<label class="w3-text-black"><b>Dosage per Day:</b></label>
             <select class="w3-select w3-border" name="dosage" type="text">
-                <option value="" disabled selected>Choose your option</option>
+                <option value="" disabled selected>Dosage</option>
                 <option value="1X Day">1X Day</option>
                 <option value="2X Day">2X Day</option>
                 <option value="3X Day">3X Day</option>
@@ -194,9 +195,39 @@ $rows = $stmt->fetchAll();
         <p>
             <label class="w3-text-black"><b>Referral:</b></label>
             <input class="w3-input w3-border" name="referral" type="text"></p>
-		<p>
+
+        <p>
             <label class="w3-text-black"><b>Referral Type:</b></label>
-            <input class="w3-input w3-border" name="referraltype" type="text"></p>
+                <select class="w3-select w3-border" name="referraltype" type="text">
+                    <option value="" disabled selected>Referral Type</option>
+                    <option value="Audiologist">Audiologist</option>
+                    <option value="Allergist">Allergist</option>
+                    <option value="Anesthesiologist">Anesthesiologist</option>
+                    <option value="Cardiologist">Cardiologist</option>
+                    <option value="Dentist">Dentist</option>
+                    <option value="Endocrinologist">Endocrinologist</option>
+                    <option value="Epidemiologist">Epidemiologist</option>
+                    <option value="Gynecologist">Gynecologist</option>
+                    <option value="Immunologist">Immunologist</option>
+                    <option value="Internal Medicine Specialist">Internal Medicine Specialist</option>
+                    <option value="Neonatologist">Neonatologist</option>
+                    <option value="Neurologist">Neurologist</option>
+                    <option value="Obstetrician">Obstetrician</option>
+                    <option value="Oncologist"> Oncologist</option>
+                    <option value="Orthopedic Surgeon">Orthopedic Surgeon</option>
+                    <option value="ENT Specialist">ENT Specialist</option>
+                    <option value="Pediatrician"> Pediatrician</option>
+                    <option value="Physiologist">Physiologist</option>
+                    <option value="Plastic Surgeon">Plastic Surgeon</option>
+                    <option value="Podiatrist">Podiatrist</option>
+                    <option value="Psychiatrist">Psychiatrist</option>
+                    <option value="Radiologist">Radiologist</option>
+                    <option value="Rheumatologist">Rheumatologist</option>
+                    <option value="Surgeon">Surgeon</option>
+                    <option value="Urologist">Urologist</option>
+            </select>
+        </p>
+
 		<p>
             <label class="w3-text-black"><b>Referral Notes:</b></label>
             <input class="w3-input w3-border" name="referralnotes" type="text"></p>

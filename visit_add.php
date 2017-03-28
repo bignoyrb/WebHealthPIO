@@ -53,10 +53,11 @@
                 :notes
             ) 
         ";
-       if($_POST['doctorid']==="Dillon Small") $did=1;
-	   else $did = $_POST['doctorid'];
-	   if($_POST['patientid']==="Bryon Reynolds") $pid=5;
-	   else $did = $_POST['patientid'];
+       if($_POST['doctorid']==="Small") {$did=1;}
+       elseif ($_POST['doctorid']==="Reynolds") {$did=2;}
+	   else {$did = $_POST['doctorid'];}
+	   if($_POST['patientid']==="Mario Mario") $pid=1;
+	   else $pid = $_POST['patientid'];
 	   
        $query_params = array( 
             ':patientid' => $pid,
@@ -109,7 +110,14 @@
         <input type="text" name="patientid" value="" />
         <br /><br />
         Doctor:<br />
-        <input type="text" name="doctorid" value="" />
+
+            <select class="w3-select w3-border" name="doctorid" type="">
+                <option value="" disabled selected>Doctor</option>
+                <option value="Small">Dr. Small</option>
+                <option value="Reynolds">Dr. Reynolds</option>
+
+            </select>
+
         <br /><br />
         Date:<br />
         <input type="date" name="date" value="" />
@@ -123,7 +131,7 @@
         Bed:<br />
         <input type="text" name="bed" value="" />
 		<br /><br />
-        Notes:<br />
+        Complaint:<br />
         <input type="text" name="notes" value="" />
         <br /><br />
         <input  class="w3-btn" type="submit" value="Schedule Visit" />
