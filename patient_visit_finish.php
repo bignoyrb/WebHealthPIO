@@ -143,13 +143,14 @@ if(htmlspecialchars($_POST['appointment'])!="") {
 if(htmlspecialchars($_POST['referral'])!="") {
 
 	$query = " 
-			INSERT INTO referral (notes,patientid,date,refdoctorname,doctortype)
-			VALUES (:notes,:pid,:date,:refdoctorname,:doctortype)
+			INSERT INTO referral (notes,patientid,doctorid,date,refdoctorname,doctortype)
+			VALUES (:notes,:pid,:did,:date,:refdoctorname,:doctortype)
 		";
 
 	$query_params = array(
 		':date' => $date,
 		':pid' => $patientid,
+		':did' => $doctorid,
 		':notes' => htmlspecialchars($_POST['referralnotes']),
 		':refdoctorname' => htmlspecialchars($_POST['referral']),
 		':doctortype' => htmlspecialchars($_POST['referraltype']),
